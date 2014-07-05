@@ -49,13 +49,12 @@ nrp(){
 	mkdir lib spec
 	git init
 }
-
+#rspec
+alias rsp='rspec'
 #tree
-if [ -z "\${which tree}" ]; then
-  tree () {
-      find $@ -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
-  }
-fi
+tree () {
+    find $@ -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+}
 # git alias
 alias gs='git status'
 alias ga='git add'
