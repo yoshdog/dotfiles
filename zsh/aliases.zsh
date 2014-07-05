@@ -35,6 +35,11 @@ alias sl=ls # often screw this up
 alias afind='ack-grep -il'
 
 # Custom Commands
+prompt_rvm() {
+    rbv=`rvm-prompt`
+    rbv=${rbv#ruby-}
+    echo $rbv
+}
 # mkdir && cd && git init
 mdg(){
 	mkdir "$*"
