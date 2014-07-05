@@ -10,7 +10,7 @@ let g:airline_enable_syntastic  = 1
 let g:airline_powerline_fonts=1
 set ambiwidth=double
 set laststatus=2
-set ttimeoutlen=50
+set timeoutlen=50
 colorscheme solarized
 let g:solarized_termcolors=256
 set background=dark
