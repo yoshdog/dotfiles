@@ -25,3 +25,13 @@
 [tmux](https://github.com/ThomasAdam/tmux)
 [cheat sheet](https://gist.github.com/MohamedAlaa/2961058)
 * Changed binding to control + a
+
+### PRY
+[pry](https://github.com/pry/pry)
+* changed prompt and method indentation
+* [awesome print](https://github.com/michaeldv/awesome_print)
+* [gist](https://github.com/defunkt/gist)
+
+### IRB
+* [wirb](https://github.com/janlelis/wirb)
+* [bond](https://github.com/cldwalker/bond)
