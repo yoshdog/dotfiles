@@ -4,6 +4,7 @@
 * [pathogen](https://github.com/tpope/vim-pathogen)
 * [nerdtree](https://github.com/scrooloose/nerdtree)
 * [vim-airline](https://github.com/bling/vim-airline)
+* [powerline-fonts](https://github.com/Lokaltog/powerline-fonts)
 * [vim-solarized](https://github.com/altercation/vim-colors-solarized)
 * [vim-endwise](http://vimawesome.com/plugin/endwise-vim)
 * [vim-fugitive](https://github.com/tpope/vim-fugitive)
