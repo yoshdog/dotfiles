@@ -26,7 +26,7 @@
 [tmux](https://github.com/ThomasAdam/tmux)
 [cheat sheet](https://gist.github.com/MohamedAlaa/2961058)
 * Changed binding to control + a
-* [tmux powerline](https://github.com/erikw/tmux-powerline)
+* [tmuxline](https://github.com/edkolev/tmuxline.vim)
 
 ### PRY
 [pry](https://github.com/pry/pry)
