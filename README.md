@@ -1,4 +1,5 @@
 # Dotfiles
+
 ### VIM
 [VimAwesome](http://vimawesome.com/)
 * [pathogen](https://github.com/tpope/vim-pathogen)
