@@ -46,6 +46,8 @@ ZSH_THEME="lambda"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
@@ -73,6 +75,7 @@ export LC_ALL=en_US.UTF-8 export LANG=en_US.UTF-8
 
 # My Aliases
 
+export EDITOR='vim'
 # Custom Commands
 prompt_rvm() {
     rbv=`rvm-prompt`
@@ -92,16 +95,23 @@ nrp(){
 	cd "$*"
 	mkdir lib spec
 	git init
+    rspec --init
+    touch README.md
 }
 #rspec
 alias rsp='rspec'
+
+#rails
+alias bi='bundle install'
+alias rl='bin/rails'
+alias rk='bin/rake'
 # git alias
 alias gs='git status'
 alias ga='git add'
-alias gc='git commit'
+alias gc='git commit -m'
 alias gb='git branch'
 alias gd='git diff'
 alias go='git checkout'
-alias gm='git merge'
+alias gm='git merge --no-ff'
 alias grm='git rm'
 alias gmv='git mv'
