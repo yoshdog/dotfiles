@@ -7,7 +7,7 @@
 	ui = true
 [core]
 	autocrlf = input
-	safecrlf = true
+	safecrlf = false
 [alias]
 	co = checkout
 	ci = commit -m
@@ -16,3 +16,4 @@
 	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 	type = cat-file -t
 	dump = cat-file -p
+    h = log --pretty=format:'%Cblue%h%Creset %C(yellow)%d%Creset %s  %Cgreen%cr, %an' --abbrev-commit --date=relative --graph

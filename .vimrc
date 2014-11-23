@@ -1,3 +1,4 @@
+set nocompatible
 execute pathogen#infect()
 syntax on
 set nu
@@ -12,13 +13,14 @@ let g:airline_powerline_fonts=1
 set ambiwidth=double
 set laststatus=2
 set timeoutlen=50
+set t_Co=256
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
 colorscheme solarized
-let g:solarized_termcolors=256
 set background=dark
-let &t_Co=256
 filetype plugin indent on
 set autoindent
 set smartindent
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab

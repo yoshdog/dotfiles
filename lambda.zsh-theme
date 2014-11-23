@@ -1,3 +1,5 @@
+# ZSH Theme - Preview: http://cl.ly/350F0F0k1M2y3A2i3p1S
+
 PROMPT='%F{blue}$%F{white} '
 RPROMPT='%F{green}[$(git_prompt_info)%F{green}] %F{blue}[$(prompt_rvm)] %F{yellow}[%2c] %F{magenta}[%n@%m] %F{white}%T'
 
