@@ -78,7 +78,7 @@ export LC_ALL=en_US.UTF-8 export LANG=en_US.UTF-8
 export EDITOR='vim'
 # Custom Commands
 prompt_rvm() {
-    rbv=`rvm-prompt`
+    rbv=`rbenv version-name`
     rbv=${rbv#ruby-}
     echo $rbv
 }
@@ -115,3 +115,6 @@ alias go='git checkout'
 alias gm='git merge --no-ff'
 alias grm='git rm'
 alias gmv='git mv'
+
+#Mocha
+alias moc='mocha --compilers coffee:coffee-script/register'
