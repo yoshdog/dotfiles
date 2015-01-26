@@ -8,6 +8,12 @@ syntax enable
 set background=dark
 colorscheme solarized
 " " *************************************************************
+" " Buffer Directory
+" " *************************************************************
+set dir=~/.swpfiles
+set backupdir=~/.swpfiles
+set undodir=~/.undofiles
+" " *************************************************************
 " " UI Setup 
 " " *************************************************************
 set history=50
