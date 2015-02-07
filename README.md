@@ -14,6 +14,7 @@
 * [vim-ruby](http://vimawesome.com/plugin/vim-ruby)
 * [vim-ruby-refactoring](http://vimawesome.com/plugin/vim-ruby-refactoring)
 * [vim-surround](http://vimawesome.com/plugin/surround-vim)
+* [You Complete Me](https://github.com/Valloric/YouCompleteMe)
 
 ### ZSH
 [ohmyzsh](https://github.com/robbyrussell/oh-my-zsh)
