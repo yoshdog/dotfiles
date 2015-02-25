@@ -1,6 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
+export PATH=$PATH:/usr/local/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -121,3 +121,7 @@ alias gmv='git mv'
 
 #Mocha
 alias moc='mocha --compilers coffee:coffee-script/register'
+
+#Rails Dev
+alias dev_logs='tail -f log/development.log | grep -v "Delayed::Backend::ActiveRecord::Job"'
+alias kill_tunnels='sudo kill `ps aux | grep "sudo bin/tunnels[s]" | sed -e "s/^root[[:space:]]*\([0-9]*\)[[:space:]]*.*/\1/"`'

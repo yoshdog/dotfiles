@@ -1,3 +1,5 @@
+let mapleader=","
+set shell=/bin/zsh
 set nocompatible          " Use Vim settings, rather than Vi settings.
 set backspace=indent,eol,start
 execute pathogen#infect()
@@ -19,8 +21,11 @@ set undodir=~/.undofiles
 set history=50
 set ruler
 set showcmd
+set incsearch
+set hidden
 set relativenumber
-set nocursorline
+"set nocursorline
+set mouse=a
 " " *************************************************************
 " " ctrlp 
 " " *************************************************************
@@ -29,7 +34,6 @@ let g:ctrlp_cmd = 'CtrlP'
 " " *************************************************************
 " " Nerd Tree
 " " *************************************************************
-"set nu
 autocmd StdinReadPre * let s:std_in=1
 let NERDTreeQuitOnOpen=1
 map <C-n> :NERDTreeToggle<CR>
@@ -42,26 +46,42 @@ let g:airline_enable_syntastic  = 1
 let g:airline_powerline_fonts=1
 set ambiwidth=double
 set laststatus=2
-set timeoutlen=50
+let g:airline#extensions#hunks#enabled=0
 " " *************************************************************
 " " Tab sizing
 " " *************************************************************
 filetype plugin indent on " Enable file type detection
 filetype indent on        " activates indenting for files
 set autoindent
-set smartindent
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
 " " *************************************************************
-" " {{ Mucstache }}
+" " {{ Mustache }}
 " " *************************************************************
 let g:mustache_abbreviations = 1
 " " *************************************************************
+" " Syntastic
+" " *************************************************************
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" " *************************************************************
+" " RSpec
+" " *************************************************************
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+" " *************************************************************
 " " Remaping keys
 " " *************************************************************
-let mapleader=","
 imap jj <Esc>
 
 nnoremap <up> <nop>
@@ -72,5 +92,3 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
-nnoremap j gj
-nnoremap k gk
