@@ -16,18 +16,22 @@ set dir=~/.swpfiles
 set backupdir=~/.swpfiles
 set undodir=~/.undofiles
 " " *************************************************************
-" " UI Setup 
+" " UI Setup
 " " *************************************************************
 set history=50
 set ruler
 set showcmd
 set incsearch
+set hlsearch
+set wildmenu
+set lazyredraw
+set showmatch
 set hidden
 set relativenumber
 "set nocursorline
 set mouse=a
 " " *************************************************************
-" " ctrlp 
+" " ctrlp
 " " *************************************************************
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -80,10 +84,18 @@ map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 " " *************************************************************
+" " Silver Searcher
+" " *************************************************************
+nnoremap <leader>a :Ag
+" " *************************************************************
 " " Remaping keys
 " " *************************************************************
 imap jj <Esc>
-
+nnoremap j gj
+nnoremap k gk
+nnoremap B ^
+nnoremap E $
+nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -92,3 +104,16 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+
+" removes training white spaces and mmoves back to the same
+" curser position
+function! <SID>StripTrailingWhitespaces()
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  let @/=_s
+  call cursor(l, c)
+endfunction
+" remove trailing whitespace on save
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
