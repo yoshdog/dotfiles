@@ -35,6 +35,13 @@ set mouse=a
 " " *************************************************************
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_use_caching = 0
+" use ag to build up ctrlp index
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ -g ""'
 " " *************************************************************
 " " Nerd Tree
 " " *************************************************************
@@ -79,14 +86,14 @@ let g:syntastic_check_on_wq = 0
 " " *************************************************************
 " " RSpec
 " " *************************************************************
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>c :call RunCurrentSpecFile()<CR>
+map <Leader>n :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 " " *************************************************************
 " " Silver Searcher
 " " *************************************************************
-nnoremap <leader>a :Ag
+nnoremap <leader>s :Ag 
 " " *************************************************************
 " " Remaping keys
 " " *************************************************************
@@ -96,6 +103,8 @@ nnoremap k gk
 nnoremap B ^
 nnoremap E $
 nnoremap <leader><space> :nohlsearch<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>w :w<CR>
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -104,9 +113,9 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
-
-" removes training white spaces and mmoves back to the same
-" curser position
+" " *************************************************************
+" " Trim Whitespace
+" " *************************************************************
 function! <SID>StripTrailingWhitespaces()
   let _s=@/
   let l = line(".")
@@ -115,5 +124,6 @@ function! <SID>StripTrailingWhitespaces()
   let @/=_s
   call cursor(l, c)
 endfunction
-" remove trailing whitespace on save
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+autocmd FileType ruby,coffee,javascript autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
