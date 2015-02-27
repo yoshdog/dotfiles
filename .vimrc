@@ -1,4 +1,4 @@
-let mapleader=","
+let mapleader=" "
 set shell=/bin/zsh
 set nocompatible          " Use Vim settings, rather than Vi settings.
 set backspace=indent,eol,start
@@ -73,17 +73,6 @@ set expandtab
 " " *************************************************************
 let g:mustache_abbreviations = 1
 " " *************************************************************
-" " Syntastic
-" " *************************************************************
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-" " *************************************************************
 " " RSpec
 " " *************************************************************
 map <Leader>c :call RunCurrentSpecFile()<CR>
@@ -102,6 +91,9 @@ nnoremap j gj
 nnoremap k gk
 nnoremap B ^
 nnoremap E $
+nnoremap <C-h> :wincmd h<CR>
+nnoremap <C-l> :wincmd l<CR>
+nnoremap <leader>v :so ~/.vimrc<CR>
 nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
