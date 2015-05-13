@@ -1,6 +1,16 @@
+#GO
+export GOPATH=$HOME/.go
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-export PATH=$PATH:/usr/local/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin
+export PATH=$PATH:/usr/local/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin:$GOPATH/bin:/usr/local/opt/go/libexec/bin
+
+# DOCKER
+export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_CERT_PATH=/Users/yoshi/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
+
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -52,9 +62,6 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-export PATH=$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -74,6 +81,9 @@ export LC_ALL=en_US.UTF-8 export LANG=en_US.UTF-8
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # My Aliases
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
 
 export EDITOR='vim'
 # Custom Commands
@@ -102,7 +112,7 @@ nrp(){
 #vim
 alias vim='mvim -v'
 #rspec
-alias rsp='rspec'
+alias rsp='rspec -cfd'
 
 #rails
 alias bi='bundle install'
@@ -114,7 +124,7 @@ alias ga='git add'
 alias gc='git commit -m'
 alias gb='git branch'
 alias gd='git diff'
-alias go='git checkout'
+alias gco='git checkout'
 alias gm='git merge --no-ff'
 alias grm='git rm'
 alias gmv='git mv'
@@ -125,3 +135,17 @@ alias moc='mocha --compilers coffee:coffee-script/register'
 #Rails Dev
 alias dev_logs='tail -f log/development.log | grep -v "Delayed::Backend::ActiveRecord::Job"'
 alias kill_tunnels='sudo kill `ps aux | grep "sudo bin/tunnels[s]" | sed -e "s/^root[[:space:]]*\([0-9]*\)[[:space:]]*.*/\1/"`'
+
+# Setup zsh-autosuggestions
+source /Users/yoshi/.zsh-autosuggestions/autosuggestions.zsh
+
+# Enable autosuggestions automatically
+zle-line-init() {
+    zle autosuggest-start
+}
+
+zle -N zle-line-init
+
+# use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
+# zsh-autosuggestions is designed to be unobtrusive)
+bindkey '^T' autosuggest-toggle

@@ -12,8 +12,9 @@ colorscheme solarized
 " " *************************************************************
 " " Buffer Directory
 " " *************************************************************
-set dir=~/.swpfiles
-set backupdir=~/.swpfiles
+"set dir=~/.swpfiles
+"set backupdir=~/.swpfiles
+set noswapfile
 set undodir=~/.undofiles
 " " *************************************************************
 " " UI Setup
@@ -51,13 +52,15 @@ map <C-n> :NERDTreeToggle<CR>
 " " *************************************************************
 " " Status Line
 " *************************************************************
+"hi clear SignColumn
 let g:airline_theme='luna'
 let g:airline_enable_branch     = 1
 let g:airline_enable_syntastic  = 1
 let g:airline_powerline_fonts=1
-set ambiwidth=double
+"set ambiwidth=double
 set laststatus=2
 let g:airline#extensions#hunks#enabled=0
+let g:airline#extensions#hunks#non_zero_only = 1
 " " *************************************************************
 " " Tab sizing
 " " *************************************************************
@@ -79,6 +82,7 @@ map <Leader>c :call RunCurrentSpecFile()<CR>
 map <Leader>n :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
+let g:rspec_runner = "os_x_iterm"
 " " *************************************************************
 " " Silver Searcher
 " " *************************************************************
