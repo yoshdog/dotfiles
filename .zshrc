@@ -5,12 +5,6 @@ export GOPATH=$HOME/.go
 export ZSH=$HOME/.oh-my-zsh
 export PATH=$PATH:/usr/local/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin:$GOPATH/bin:/usr/local/opt/go/libexec/bin
 
-# DOCKER
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/yoshi/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
-
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
