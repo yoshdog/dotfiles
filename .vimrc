@@ -1,6 +1,6 @@
 let mapleader=" "
 set shell=/bin/zsh
-set nocompatible          " Use Vim settings, rather than Vi settings.
+set nocompatible
 set backspace=indent,eol,start
 execute pathogen#infect()
 " " *************************************************************
@@ -52,20 +52,18 @@ map <C-n> :NERDTreeToggle<CR>
 " " *************************************************************
 " " Status Line
 " *************************************************************
-"hi clear SignColumn
 let g:airline_theme='luna'
 let g:airline_enable_branch     = 1
 let g:airline_enable_syntastic  = 1
 let g:airline_powerline_fonts=1
-"set ambiwidth=double
 set laststatus=2
 let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#hunks#non_zero_only = 1
 " " *************************************************************
 " " Tab sizing
 " " *************************************************************
-filetype plugin indent on " Enable file type detection
-filetype indent on        " activates indenting for files
+filetype plugin indent on
+filetype indent on
 set autoindent
 set tabstop=2
 set shiftwidth=2
@@ -122,4 +120,3 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 
 autocmd FileType ruby,coffee,javascript autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-
