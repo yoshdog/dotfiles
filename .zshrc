@@ -143,7 +143,7 @@ alias dev_logs='tail -f log/development.log | grep -v "Delayed::Backend::ActiveR
 alias kill_tunnels='sudo kill `ps aux | grep "sudo bin/tunnels[s]" | sed -e "s/^root[[:space:]]*\([0-9]*\)[[:space:]]*.*/\1/"`'
 
 # Setup zsh-autosuggestions
-source /Users/yoshi/.zsh-autosuggestions/autosuggestions.zsh
+source $HOME/.zsh-autosuggestions/autosuggestions.zsh
 
 # Enable autosuggestions automatically
 zle-line-init() {
