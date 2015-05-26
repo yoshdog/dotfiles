@@ -103,6 +103,18 @@ nrp(){
     touch README.md
 }
 
+# ctlr-z for fast switching
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    fg
+    zle redisplay
+  else
+    zle push-input
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
+
 #vim
 alias vim='mvim -v'
 #rspec
