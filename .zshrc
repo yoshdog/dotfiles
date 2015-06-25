@@ -1,9 +1,11 @@
+fpath=(/usr/local/share/zsh/site-functions $fpath) 
 #GO
 export GOPATH=$HOME/.go
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-export PATH=$PATH:/usr/local/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin:$GOPATH/bin:/usr/local/opt/go/libexec/bin
+export PATH=$PATH:/usr/local/bin:$GOPATH/bin:/usr/local/opt/go/libexec/bin
+source /opt/boxen/env.sh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -52,7 +54,7 @@ ZSH_THEME="lambda"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git rails ruby brew bundler)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -138,17 +140,14 @@ alias gmv='git mv'
 #Mocha
 alias moc='mocha --compilers coffee:coffee-script/register'
 
-#Rails Dev
-alias dev_logs='tail -f log/development.log | grep -v "Delayed::Backend::ActiveRecord::Job"'
-alias kill_tunnels='sudo kill `ps aux | grep "sudo bin/tunnels[s]" | sed -e "s/^root[[:space:]]*\([0-9]*\)[[:space:]]*.*/\1/"`'
-
 # Setup zsh-autosuggestions
-source $HOME/.zsh-autosuggestions/autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-autosuggestions/autosuggestions.zsh
 
 # Enable autosuggestions automatically
-zle-line-init() {
+ zle-line-init() {
     zle autosuggest-start
-}
+ }
 
 zle -N zle-line-init
 
