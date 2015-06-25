@@ -1,4 +1,3 @@
-fpath=(/usr/local/share/zsh/site-functions $fpath) 
 #GO
 export GOPATH=$HOME/.go
 
@@ -127,6 +126,7 @@ alias bi='bundle install'
 alias rl='bin/rails'
 alias rk='bin/rake'
 # git alias
+alias g='git'
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit -m'
