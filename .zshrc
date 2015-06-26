@@ -1,10 +1,6 @@
-#GO
-export GOPATH=$HOME/.go
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-export PATH=$PATH:/usr/local/bin:$GOPATH/bin:/usr/local/opt/go/libexec/bin
-source /opt/boxen/env.sh
+export PATH=$PATH:/usr/local/bin
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -53,7 +49,7 @@ ZSH_THEME="lambda"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+#plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -155,3 +151,5 @@ zle -N zle-line-init
 # use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
 # zsh-autosuggestions is designed to be unobtrusive)
 bindkey '^T' autosuggest-toggle
+
+source /opt/boxen/env.sh
