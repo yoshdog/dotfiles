@@ -53,7 +53,7 @@ ZSH_THEME="lambda"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rails ruby brew bundler)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -123,6 +123,7 @@ alias rsp='rspec -cfd'
 
 #rails
 alias bi='bundle install'
+alias be='bundle exec'
 alias rl='bin/rails'
 alias rk='bin/rake'
 # git alias
