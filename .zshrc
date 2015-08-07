@@ -2,6 +2,10 @@
 export ZSH=$HOME/.oh-my-zsh
 export PATH=$PATH:/usr/local/bin
 
+export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_CERT_PATH=~/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -49,7 +53,7 @@ ZSH_THEME="lambda"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew rails ruby)
+plugins=(git brew rails ruby bundler)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -76,7 +80,7 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
-export EDITOR='vim'
+export EDITOR='mvim -v'
 # Custom Commands
 prompt_rvm() {
     rbv=`rbenv version-name`
@@ -98,6 +102,16 @@ nrp(){
 	git init
     rspec --init
     touch README.md
+}
+
+# update master
+pm(){
+  git checkout master
+  git pull --ff-only
+  bundle install
+  rbenv rehash
+  bundle exec rake db:migrate db:test:prepare
+  bundle exec spring binstub --all
 }
 
 # ctlr-z for fast switching
@@ -126,7 +140,7 @@ alias rk='bin/rake'
 alias g='git'
 alias gs='git status'
 alias ga='git add'
-alias gc='git commit -m'
+alias gc='git commit'
 alias gb='git branch'
 alias gd='git diff'
 alias gco='git checkout'
@@ -136,6 +150,10 @@ alias gmv='git mv'
 
 #Mocha
 alias moc='mocha --compilers coffee:coffee-script/register'
+
+#Docker
+alias b2d='boot2docker'
+alias dc='docker-compose'
 
 # Setup zsh-autosuggestions
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -151,5 +169,4 @@ zle -N zle-line-init
 # use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
 # zsh-autosuggestions is designed to be unobtrusive)
 bindkey '^T' autosuggest-toggle
-
 source /opt/boxen/env.sh

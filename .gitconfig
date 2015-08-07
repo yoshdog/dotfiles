@@ -1,13 +1,27 @@
+[gh]
+  protocol = https
+
+[core]
+  excludesfile = /opt/boxen/config/git/gitignore
+  autocrlf = input
+  safecrlf = false
+
+[push]
+  default = simple
+
+[color]
+  ui = true
+
+[credential]
+  helper = /opt/boxen/bin/boxen-git-credential
+
 [user]
 	name = Toan Nguyen
 	email = toan@graduate.uwa.edu.au
-[push]
-	default = simple
-[color]
-	ui = true
-[core]
-	autocrlf = input
-	safecrlf = false
+
+[buildkite]
+	apikey = 0a81106e6f435dc0781cb672e144916e06fe0b1c
+
 [alias]
 	co = checkout
 	ci = commit -m
@@ -16,4 +30,6 @@
 	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 	type = cat-file -t
 	dump = cat-file -p
-    h = log --pretty=format:'%Cblue%h%Creset %C(yellow)%d%Creset %s  %Cgreen%cr, %an' --abbrev-commit --date=relative --graph
+  h = log --pretty=format:'%Cblue%h%Creset %C(yellow)%d%Creset %s  %Cgreen%cr, %an' --abbrev-commit --date=relative --graph
+[commit]
+	template = /Users/toan/.config/git-commit-template.txt
