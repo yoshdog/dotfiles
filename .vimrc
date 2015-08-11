@@ -31,6 +31,7 @@ set relativenumber
 "set nocursorline
 set mouse=a
 set list listchars=tab:»·,trail:·,nbsp:·
+set clipboard=unnamed
 " " *************************************************************
 " " ctrlp
 " " *************************************************************
