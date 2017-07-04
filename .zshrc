@@ -1,10 +1,5 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-export PATH=$PATH:/usr/local/bin
-
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=~/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -53,7 +48,7 @@ ZSH_THEME="lambda"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew rails ruby bundler)
+plugins=(git brew ruby bundler)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -63,11 +58,11 @@ source $ZSH/oh-my-zsh.sh
 export LC_ALL=en_US.UTF-8 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='mvim -v'
+ fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -80,7 +75,11 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
-export EDITOR='mvim -v'
+#if [[ -x '/Applications/Emacs.app/Contents/MacOS/bin/emacsclient' ]]; then
+#    export EDITOR='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
+#else
+#    export EDITOR="mvim -v"
+#fi
 # Custom Commands
 prompt_rvm() {
     rbv=`rbenv version-name`
@@ -111,7 +110,6 @@ pm(){
   bundle install
   rbenv rehash
   bundle exec rake db:migrate db:test:prepare
-  bundle exec spring binstub --all
 }
 
 # ctlr-z for fast switching
@@ -128,6 +126,12 @@ bindkey '^Z' fancy-ctrl-z
 
 #vim
 alias vim='mvim -v'
+
+#emacs
+if [[ -x '/Applications/Emacs.app/Contents/MacOS/bin/emacsclient' ]]; then
+    alias e='emacs'
+    alias emacs='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient --no-wait'
+fi
 #rspec
 alias rsp='rspec -cfd'
 
@@ -140,13 +144,15 @@ alias rk='bin/rake'
 alias g='git'
 alias gs='git status'
 alias ga='git add'
-alias gc='git commit'
+alias gc='git commit -S'
 alias gb='git branch'
 alias gd='git diff'
 alias gco='git checkout'
-alias gm='git merge --no-ff'
 alias grm='git rm'
 alias gmv='git mv'
+alias gup='git smart-pull'
+alias gm='git smart-merge'
+alias gl='git smart-log'
 
 #Mocha
 alias moc='mocha --compilers coffee:coffee-script/register'
@@ -155,9 +161,26 @@ alias moc='mocha --compilers coffee:coffee-script/register'
 alias b2d='boot2docker'
 alias dc='docker-compose'
 
+# AWS
+for profile in envato-customer-prod-power-user envato-customer-prod-read-only envato-customer-prod-cloudformation-user envato-market-development discovery-prod-admin envato-platform-production-cloudformation-user envato-customer-development-cloudformation-user; do
+  alias aws-console-${profile}="open \$(aws-vault login ${profile})"
+  alias aws-exec-${profile}="aws-vault exec ${profile} -- true && aws-vault exec ${profile} -- "
+  alias aws-login-${profile}="eval \$(aws-exec-${profile} env | grep AWS | sed 's/^/export /g')"
+  alias aws-clear-${profile}="security delete-generic-password -a '${profile}'"
+done
+
+alias awsi=aws-exec-identity-production
+alias awsc=aws-exec-envato-customer-prod-cloudformation-user
+alias awscp=aws-exec-envato-customer-prod-power-user
+alias awsm=aws-exec-envato-market-development
+alias awsd=aws-exec-discovery-prod-admin
+alias awsp=aws-exec-envato-platform-production-cloudformation-user
+alias awscd=aws-exec-envato-customer-development-cloudformation-user
+
 # Setup zsh-autosuggestions
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-autosuggestions/autosuggestions.zsh
+source ~/.zsh/tmuxinator.zsh
 
 # Enable autosuggestions automatically
  zle-line-init() {
@@ -169,4 +192,12 @@ zle -N zle-line-init
 # use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
 # zsh-autosuggestions is designed to be unobtrusive)
 bindkey '^T' autosuggest-toggle
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export TERM=xterm-256color
 source /opt/boxen/env.sh
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash

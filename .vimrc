@@ -27,7 +27,8 @@ set wildmenu
 set lazyredraw
 set showmatch
 set hidden
-set relativenumber
+set number
+"set relativenumber
 "set nocursorline
 set mouse=a
 set list listchars=tab:»·,trail:·,nbsp:·
@@ -54,7 +55,7 @@ map <C-n> :NERDTreeToggle<CR>
 " " Status Line
 " *************************************************************
 set laststatus=2
-let g:airline_theme='luna'
+let g:airline_theme='solarized'
 let g:airline_powerline_fonts=1
 "let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#airline#enabled_branch=1
@@ -82,7 +83,8 @@ map <Leader>c :call RunCurrentSpecFile()<CR>
 map <Leader>n :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
-let g:rspec_command = "!rspec {spec}"
+let g:rspec_command = "!zeus rspec {spec}"
+"let g:rspec_command = "!rspec {spec}"
 let g:rspec_runner = "os_x_iterm2"
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 " " *************************************************************

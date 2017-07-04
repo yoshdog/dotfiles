@@ -1,0 +1,21 @@
+name: gateway
+root: ~
+
+windows:
+  - gateway:
+      root: ~/src/api_gateway/
+      layout: tiled
+      panes:
+        - MARKET_OLD_CANONICAL_HOST=marketplace.envato.com API_ROOT=http://api.envato.dev PUBLIC_SEARCH_API_ENDPOINT=http://search-api.envato.dev SSO_ROOT=http://account.envato.dev node server.js
+  - buildenvato:
+      root: ~/src/build_envato_com/
+      layout: tiled
+      panes:
+        - API_ROOT=http://api.envato.dev bundle exec middleman server
+  - sso:
+      root: ~/src/sso_server
+      layout: tiled
+      panes:
+        - ENVATO_API_URL=api.envato.dev bundle exec foreman start
+        - tail -f log/rails_development.0.log
+        - tail -f log/development.log
