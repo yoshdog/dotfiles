@@ -1,0 +1,85 @@
+// Place your settings in this file to overwrite the default settings
+{
+  "vim.disableAnnoyingNeovimMessage": true,
+  "vim.useSystemClipboard": true,
+  "vim.hlsearch": true,
+  "vim.leader": "<space>",
+  "workbench.sideBar.location": "left",
+  "workbench.editor.showTabs": false,
+  "window.zoomLevel": 0,
+  "editor.minimap.enabled": false,
+  "editor.fontSize": 14,
+  "editor.tabSize": 2,
+  "telemetry.enableTelemetry": false,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "vim.otherModesKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "leader",
+        "s"
+      ],
+      "after": [],
+      "commands": [
+        {
+          "command": "workbench.actions.findInFiles"
+        }
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "leader"
+      ],
+      "after": [],
+      "commands": [
+        {
+          "command": ":nohl",
+          "args": []
+        }
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "w"
+      ],
+      "after": [],
+      "commands": [
+        {
+          "command": "workbench.action.files.save",
+          "args": []
+        }
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "c"
+      ],
+      "after": [],
+      "commands": [
+        {
+          "command": "workbench.action.tasks.runTask",
+          "args": [
+            "Test current file"
+          ]
+        }
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "q"
+      ],
+      "after": [],
+      "commands": [
+        {
+          "command": "workbench.action.closeActiveEditor",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

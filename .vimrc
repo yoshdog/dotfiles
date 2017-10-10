@@ -39,12 +39,43 @@ set clipboard=unnamed
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_use_caching = 0
-" use ag to build up ctrlp index
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      \ --ignore .git
-      \ --ignore .hg
-      \ --ignore .DS_Store
-      \ -g ""'
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+let g:path_to_matcher = "/usr/local/bin/matcher"
+
+" The Silver Searcher
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+endif
+
+if executable('matcher')
+    let g:ctrlp_match_func = { 'match': 'GoodMatch' }
+
+    function! GoodMatch(items, str, limit, mmode, ispath, crfile, regex)
+
+      " Create a cache file if not yet exists
+      let cachefile = ctrlp#utils#cachedir().'/matcher.cache'
+      if !( filereadable(cachefile) && a:items == readfile(cachefile) )
+        call writefile(a:items, cachefile)
+      endif
+      if !filereadable(cachefile)
+        return []
+      endif
+
+      " a:mmode is currently ignored. In the future, we should probably do
+      " something about that. the matcher behaves like "full-line".
+      let cmd = 'matcher --limit '.a:limit.' --manifest '.cachefile.' '
+      if !( exists('g:ctrlp_dotfiles') && g:ctrlp_dotfiles )
+        let cmd = cmd.'--no-dotfiles '
+      endif
+      let cmd = cmd.a:str
+
+      return split(system(cmd), "\n")
+
+    endfunction
+end
 " " *************************************************************
 " " Nerd Tree
 " " *************************************************************
@@ -83,10 +114,18 @@ map <Leader>c :call RunCurrentSpecFile()<CR>
 map <Leader>n :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
-let g:rspec_command = "!zeus rspec {spec}"
-"let g:rspec_command = "!rspec {spec}"
+"let g:rspec_command = "!spring rspec {spec}"
+let g:rspec_command = "!rspec {spec}"
 let g:rspec_runner = "os_x_iterm2"
+" " *************************************************************
+" " Autocomplete
+" " *************************************************************
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+if !exists("g:ycm_semantic_triggers")
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
+let g:tsuquyomi_completion_detail = 1
 " " *************************************************************
 " " Silver Searcher
 " " *************************************************************
@@ -125,4 +164,4 @@ function! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfunction
 
-autocmd FileType ruby,coffee,javascript autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd FileType ruby,javascript autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()

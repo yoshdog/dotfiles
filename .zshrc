@@ -141,6 +141,7 @@ alias be='bundle exec'
 alias rl='bin/rails'
 alias rk='bin/rake'
 # git alias
+alias git='hub'
 alias g='git'
 alias gs='git status'
 alias ga='git add'
@@ -196,8 +197,7 @@ bindkey '^T' autosuggest-toggle
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export TERM=xterm-256color
-source /opt/boxen/env.sh
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
+export PATH=~/.nodenv/bin:$PATH
+eval "$(rbenv init -)"
+eval "$(nodenv init -)"
+eval "$(pyenv init -)"
