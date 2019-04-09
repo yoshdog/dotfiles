@@ -1,9 +1,10 @@
-// Place your settings in this file to overwrite the default settings
 {
-  "vim.disableAnnoyingNeovimMessage": true,
+  "standard.run": "onSave",
+  "files.trimTrailingWhitespace": true,
   "vim.useSystemClipboard": true,
   "vim.hlsearch": true,
   "vim.leader": "<space>",
+  "vim.easymotion": true,
   "workbench.sideBar.location": "left",
   "workbench.editor.showTabs": false,
   "window.zoomLevel": 0,
@@ -14,12 +15,10 @@
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
+  "gitlens.codeLens.enabled": false,
   "vim.otherModesKeyBindingsNonRecursive": [
     {
-      "before": [
-        "leader",
-        "s"
-      ],
+      "before": ["leader", "s"],
       "after": [],
       "commands": [
         {
@@ -28,10 +27,7 @@
       ]
     },
     {
-      "before": [
-        "leader",
-        "leader"
-      ],
+      "before": ["leader", "leader"],
       "after": [],
       "commands": [
         {
@@ -41,10 +37,7 @@
       ]
     },
     {
-      "before": [
-        "leader",
-        "w"
-      ],
+      "before": ["leader", "w"],
       "after": [],
       "commands": [
         {
@@ -54,25 +47,17 @@
       ]
     },
     {
-      "before": [
-        "leader",
-        "c"
-      ],
+      "before": ["leader", "c"],
       "after": [],
       "commands": [
         {
           "command": "workbench.action.tasks.runTask",
-          "args": [
-            "Test current file"
-          ]
+          "args": ["Test current file"]
         }
       ]
     },
     {
-      "before": [
-        "leader",
-        "q"
-      ],
+      "before": ["leader", "q"],
       "after": [],
       "commands": [
         {
@@ -81,5 +66,44 @@
         }
       ]
     }
-  ]
+  ],
+  "files.associations": {
+    "*.css": "sass"
+  },
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/vendor": true,
+    "**/.bundle": true
+  },
+  "search.exclude": {
+    "**/vendor": true,
+    "**/.bundle": true
+  },
+  "extensions.ignoreRecommendations": true,
+  "workbench.colorTheme": "Boxy Solarized Dark",
+  "gitlens.advanced.messages": {
+    "suppressCommitHasNoPreviousCommitWarning": false,
+    "suppressCommitNotFoundWarning": false,
+    "suppressFileNotUnderSourceControlWarning": false,
+    "suppressGitVersionWarning": false,
+    "suppressLineUncommittedWarning": false,
+    "suppressNoRepositoryWarning": false,
+    "suppressResultsExplorerNotice": false,
+    "suppressShowKeyBindingsNotice": true,
+    "suppressUpdateNotice": false,
+    "suppressWelcomeNotice": true
+  },
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.enabled": false,
+  "git.enableSmartCommit": true,
+  "gitlens.keymap": "alternate",
+  "gitlens.historyExplorer.enabled": true,
+  "terraform.format.enable": false,
+  "git.ignoreMissingGitWarning": true,
+  "sequencediagrams.diagram.style": "simple",
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "vim.disableExtension": false,
+  "files.autoSave": "onFocusChange",
+  "editor.formatOnSave": false
 }
+

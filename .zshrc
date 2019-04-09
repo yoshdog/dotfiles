@@ -58,11 +58,11 @@ source $ZSH/oh-my-zsh.sh
 export LC_ALL=en_US.UTF-8 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
- else
-   export EDITOR='mvim -v'
- fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim -v'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -107,9 +107,12 @@ nrp(){
 pm(){
   git checkout master
   git pull --ff-only
-  bundle install
-  rbenv rehash
-  bundle exec rake db:migrate db:test:prepare
+  ./script/bootstrap
+}
+
+# start sites development
+start-sites(){
+  aws-vault exec envato-sites-dev-rw --session-ttl=8h --assume-role-ttl=1h  -- ./script/start
 }
 
 # ctlr-z for fast switching
@@ -163,7 +166,7 @@ alias b2d='boot2docker'
 alias dc='docker-compose'
 
 # AWS
-for profile in envato-customer-prod-power-user envato-customer-prod-read-only envato-customer-prod-cloudformation-user envato-market-development discovery-prod-admin envato-platform-production-cloudformation-user envato-customer-development-cloudformation-user; do
+for profile in envato-customer-prod-power-user envato-customer-prod-read-only envato-customer-prod-cloudformation-user envato-market-development discovery-prod-cf envato-platform-production-cloudformation-user envato-customer-development-cloudformation-user; do
   alias aws-console-${profile}="open \$(aws-vault login ${profile})"
   alias aws-exec-${profile}="aws-vault exec ${profile} -- true && aws-vault exec ${profile} -- "
   alias aws-login-${profile}="eval \$(aws-exec-${profile} env | grep AWS | sed 's/^/export /g')"
@@ -174,7 +177,7 @@ alias awsi=aws-exec-identity-production
 alias awsc=aws-exec-envato-customer-prod-cloudformation-user
 alias awscp=aws-exec-envato-customer-prod-power-user
 alias awsm=aws-exec-envato-market-development
-alias awsd=aws-exec-discovery-prod-admin
+alias awsd=aws-exec-discovery-prod-cf
 alias awsp=aws-exec-envato-platform-production-cloudformation-user
 alias awscd=aws-exec-envato-customer-development-cloudformation-user
 
@@ -197,7 +200,20 @@ bindkey '^T' autosuggest-toggle
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export TERM=xterm-256color
-export PATH=~/.nodenv/bin:$PATH
+export GOPATH=$HOME/src/go
+export PATH=$HOME/.nodenv/bin:$GOPATH/bin:$PATH
+
 eval "$(rbenv init -)"
 eval "$(nodenv init -)"
 eval "$(pyenv init -)"
+eval "$(direnv hook zsh)"
+export PATH=$HOME/.yarn/bin:$PATH
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
